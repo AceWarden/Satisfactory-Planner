@@ -279,17 +279,17 @@ for x in dat:
 
 
 
-base_res=[
-"Iron Ore", 
-"Copper Ore",
-"Limestone",
-"Caterium Ore",
-"Raw Quartz",
-"Sulfur",
-"Coal",
-"SAM",
-"Water",
-];
+base_resource={
+"Iron Ore":0, 
+"Copper Ore":0,
+"Limestone":0,
+"Caterium Ore":0,
+"Raw Quartz":0,
+"Sulfur":0,
+"Coal":0,
+"SAM":0,
+"Water":0,
+};
 
 
 #Default Recipe Setup
@@ -302,13 +302,13 @@ for x in default:   #looping through the strings of desired output
 
 
 try:
-    with open('user_pref.txt','rb') as file:
-        user_pref=pickle.load(file)
+    with open('user_recipe.txt','rb') as file:
+        user_recipe=pickle.load(file)
         file.close()
 except:
-    with open('user_pref.txt','wb') as file:
+    with open('user_recipe.txt','wb') as file:
         pickle.dump(default,file)
-        user_pref=default
+        user_recipe=default
         file.close()
-print(user_pref)
-print(user_pref["Iron Ingot"]["i"]["Iron Ore"])
+#print(user_pref)
+#print(user_pref["Iron Ingot"]["i"]["Iron Ore"])
