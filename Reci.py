@@ -1,3 +1,6 @@
+import pickle
+import copy
+
 sample_dat_1=[
     {#Recipe 0
             "i": {},
@@ -271,7 +274,7 @@ for x in dat:
 #master_list={material: [required ppm, {factory_type:# of factory, factory_type:# of factory}],...,}
 
 
-print(master_list)
+#print(master_list)
 #print(count)
 
 
@@ -287,3 +290,25 @@ base_res=[
 "SAM",
 "Water",
 ];
+
+
+#Default Recipe Setup
+#dat{desired_output}[recipe#]{i/o'/f}{material}=#
+default=copy.deepcopy(dat);
+
+for x in default:   #looping through the strings of desired output
+    default[x]=default[x][0]    #pick the 1st recipe always
+#print(default)
+
+
+try:
+    with open('user_pref.txt','rb') as file:
+        user_pref=pickle.load(file)
+        file.close()
+except:
+    with open('user_pref.txt','wb') as file:
+        pickle.dump(default,file)
+        user_pref=default
+        file.close()
+print(user_pref)
+print(user_pref["Iron Ingot"]["i"]["Iron Ore"])
