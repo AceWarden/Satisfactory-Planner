@@ -41,10 +41,12 @@ print("Length of Product ", product_size)
 checker = [1] * product_size;
 im_prod_keys=set();
 im_base_keys=set();
+
+
 while checker != [0] * product_size: # x in product:
     temp_index = count % product_size
     x = product_key[temp_index] #to keep consistent from old code
-    temp_product = product[x]
+    temp_product = product[x] #Check here?
     print(temp_index)
     #print("Product Check per Key ||", x, product[x])
     
@@ -61,7 +63,16 @@ while checker != [0] * product_size: # x in product:
     if temp_product[0]>0:
         print("Product Before||", x , product[x])
         temp_recipe = user_recipe[x]
-        print("Temp_Recipe", x, temp_recipe)
+        print("Temp_Recipe||", x, temp_recipe)
+        factory = temp_recipe["f"]
+        print(factory, type(factory))
+        print("Factory b||", factory, product[x][1][factory],type(product[x][1][factory]))
+        #---------------nid help here--------------------
+        product[x][1][factory]+=1
+        #---------------this one-------------------------
+        #print(product)
+        print("Factory a||", factory, product[x][1][factory],type(product[x][1][factory]))
+        print("Product After||", x , product[x])
         
         #`y` is the key of output products. y="Iron Ingot"
         for y in temp_recipe["o"]: #materials made but backfed since we're trying to solve how much needed materials
@@ -70,7 +81,7 @@ while checker != [0] * product_size: # x in product:
             #print(temp_product)
             im_prod_keys.add(y)
         for y in temp_recipe["i"]: #materials needed, y="Iron Ore"
-            print("Required Input",temp_recipe["i"])
+            print("Required Input||",temp_recipe["i"])
             
             try:
                 product[y][0] += temp_recipe["i"][y]
@@ -81,13 +92,7 @@ while checker != [0] * product_size: # x in product:
                 im_base_keys.add(y)
             else:
                 print("It's an intermediate resource!")
-
-#------------------------------------------------
-        factory = temp_recipe["f"]
-        print(factory, type(factory))
-        product[x][1][factory]+=1
-        print("Product After||", x , product[x])
-#-------------------------------------------------        
+    
     else:
         checker[temp_index] = 0; #an operation did not happen in the loop
     
