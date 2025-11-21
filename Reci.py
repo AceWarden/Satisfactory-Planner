@@ -268,7 +268,7 @@ for x in dat:
 master_list={}
 count=0;
 for x in dat:
-    master_list.update({x:[0,factory_list]})
+    master_list.update({x:[0,0]})#factory_list]})
     count+=1
 
 #master_list={material: [required ppm, {factory_type:# of factory, factory_type:# of factory}],...,}
